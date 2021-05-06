@@ -56,24 +56,6 @@ while double(norm(lamda.* subs(gradient_equation,[x,y],[next_position]))') >.1
     next_position = (lamda .* double(subs(gradient_equation,[x,y],[next_position])))' + next_position;
     lamda  = lamda * delta;
 end
-
-%% Plot the Neato path onto a graph
-hold on
-xlabel("x(m)")
-ylabel("y(m)")
-title("Gauntlet Challenge Neato Travel Path")
-plot(positions(:,1),positions(:,2))
-ylim([-3 inf])
-plot(1,-.7,".",'MarkerSize', 30)
-plot(-.25,-1,".",'MarkerSize', 30)
-plot(1.41,-2,".",'MarkerSize', 30)
-plot(.75,-2.5,".",'MarkerSize', 30)
-legend("Travel Path","Obstacle 1","Obstacle 2","Obstacle 3","Barrel of Benevolence",'Location','best')
-axis equal
-positions
-angles = deg2rad(360) - angles;
-rad2deg(angles)
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Create the Lidar Scans from various positions on the Gauntlet
 sub = rossubscriber('/scan');
